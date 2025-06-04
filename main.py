@@ -8,6 +8,31 @@ TRIG_PIN = Pin(5, Pin.OUT)
 ECHO_PIN = Pin(18, Pin.IN)
 BUZZER_PIN = Pin(19, Pin.OUT)
 
+
+def connect():
+    import network
+ 
+    ssid = "smartspacekk" 
+    password = "smartspace09" 
+ 
+    station = network.WLAN(network.STA_IF)
+ 
+    if station.isconnected() == True:
+        print("Already connected")
+        return
+ 
+    station.active(True)
+    station.connect(ssid, password)
+ 
+    while station.isconnected() == False:
+        pass
+ 
+    print("Connection successful")
+    print(station.ifconfig())
+
+
+
+
 def get_distance():
     # Send a 10us pulse to trigger
     TRIG_PIN.off()
