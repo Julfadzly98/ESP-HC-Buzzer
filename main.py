@@ -1,4 +1,6 @@
 from machine import Pin, time_pulse_us
+from urllib import request
+from time import sleep
 import time
 
 # Pin setup
@@ -38,3 +40,12 @@ while True:
         print("Error reading distance")
 
     time.sleep(0.2)
+
+    sleep(5)
+
+    form_url = "".format(distance)
+    request.urlopen(form_url)
+
+
+
+
