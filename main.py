@@ -1,5 +1,5 @@
 from machine import Pin, time_pulse_us
-from urllib import request
+import urequests
 from time import sleep
 import time
 
@@ -41,10 +41,16 @@ while True:
 
     time.sleep(0.2)
 
-    sleep(5)
+    h = {'content-type' : 'application/x-www-form-urlencoded'}
+    form_url = 'https://docs.google.com/forms/d/e/1FAIpQLSeKT-7XwFW3nxrGBhprCks2jXZWOCj-UAm2gq1-jFEOyXSLLA/formResponse?usp=pp_url&'
+    form_data = 'entry.108654085=' + str(distance)
+    r = urequests.post(form_url, data=form_data, headers=h)
+    r.status_code
+    r.close()
+    print("check google form")
+    time.sleep(10)
 
-    form_url = "".format(distance)
-    request.urlopen(form_url)
+
 
 
 
